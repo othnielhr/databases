@@ -15,7 +15,6 @@ describe('Persistent Node Chat Server', function() {
       database: 'chat'
     });
     dbConnection.connect();
-
     var tablename = 'messages'; // TODO: fill this out
 
     /* Empty the db table before each test so that multiple tests
@@ -28,6 +27,7 @@ describe('Persistent Node Chat Server', function() {
   });
 
   it('Should insert posted messages to the DB', function(done) {
+    console.log('here?');
     // Post the user to the chat server.
     request({
       method: 'POST',

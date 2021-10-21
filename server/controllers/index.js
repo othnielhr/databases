@@ -15,7 +15,7 @@ module.exports = {
     }, // a function which handles a get request for all messages
     post: function (req, res) {
       // console.log('controllers post');
-      // console.log('req here', req);
+      console.log('req here', req);
       models.messages.post(req.body, (err, data) => {
         if (err) {
           res.send(err);
@@ -38,6 +38,7 @@ module.exports = {
       });
     },
     post: function (req, res) {
+      console.log('request', req);
       models.users.post(req.body, (err, data) => {
         if (err) {
           res.send(err);
