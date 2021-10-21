@@ -8,7 +8,7 @@ module.exports = {
         if (err) {
           console.log(err, null);
         } else {
-          console.log('data', data);
+          // console.log('data', data);
           callback(data);
         }
       });
@@ -16,8 +16,9 @@ module.exports = {
     }, // a function which produces all the messages
     post: function (body, callback) {
       // use mysql INSERT INTO <table> (col1, col2, ...) VALUES (val1, val2, ...)
-      console.log('body', body);
-      db.connection.query(`INSERT INTO messages (user_id, message, roomname) VALUES ((SELECT id FROM users WHERE name = '${body.username}'), '${body.message}', '${body.roomname}');`);
+      // console.log('body', body);
+      var msg = body.message;
+      db.connection.query(`INSERT INTO messages (user_id, message, roomname) VALUES ((SELECT id FROM users WHERE name = '${body.username}'), @${body.message}, '${body.roomname}');`);
       // if (err) {
       //   console.log(err, null);
       // } else {

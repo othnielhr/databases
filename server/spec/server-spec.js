@@ -8,8 +8,11 @@ var expect = require('chai').expect;
 describe('Persistent Node Chat Server', function() {
   var dbConnection;
 
-  beforeEach(function(done) {
+  beforeEach(function (done) {
+    this.timeout(5000);
     dbConnection = mysql.createConnection({
+      // host: 'http://127.0.0.1',
+      // port: 3000,
       user: 'root',
       // password: '',
       database: 'chat'
@@ -27,7 +30,6 @@ describe('Persistent Node Chat Server', function() {
   });
 
   it('Should insert posted messages to the DB', function(done) {
-    console.log('here?');
     // Post the user to the chat server.
     request({
       method: 'POST',
