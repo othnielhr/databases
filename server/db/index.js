@@ -11,7 +11,7 @@ connection.connect(function(err) {
   if (err) {
     console.log('error connecting', err);
   } else {
-    console.log('connected as id ', + connection.threadId);
+    console.log('connected');
   }
 });
-exports.connection = connection;
+module.exports.connection = connection;
