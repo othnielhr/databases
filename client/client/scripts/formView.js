@@ -13,26 +13,6 @@ var FormView = {
   handleSubmit: function(event) {
     // Stop the browser from submitting the form
     event.preventDefault();
-<<<<<<< HEAD
-    var message = {
-      username: App.username,
-      text: document.getElementById('message').value,
-      roomname: Rooms.currentRoom
-    };
-    var pass = function() {
-      App.fetch();
-    };
-    var fail = function() {
-      console.log('failed to submit message!!');
-    };
-    // TODO: Currently, this is all handleSubmit does.
-    // Make this function actually send a message to the Parse API.
-
-    console.log('click!', message);
-    Parse.create(message, pass, fail => {});
-    document.getElementById('message').value = '';
-  },
-=======
 
 
     var message = {
@@ -46,7 +26,6 @@ var FormView = {
       Messages.add(message, MessagesView.render);
     });
       },
->>>>>>> 85af38ff5bfffe2ef5c97b22ae49dca347dd5313
 
   setStatus: function(active) {
     var status = active ? 'true' : null;

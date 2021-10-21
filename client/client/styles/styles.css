@@ -58,16 +58,12 @@ form input[type=text] {
     font-size: 12px;
     padding: 5px;
 }
+
 .chat {
     padding: 5px;
     margin-bottom: 5px;
     background-color: #eee;
 }
-
-.chat .friend {
-    background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(227, 255, 71))
-}
-
 
 .chat .username {
     font-weight: 800;
@@ -87,8 +83,8 @@ form input[type=text] {
     padding: 10px;
 }
 
-/* .friend {
+.friend {
     color: #fff;
     background-color: #0090da;
-} */
+}
 

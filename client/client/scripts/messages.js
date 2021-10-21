@@ -4,18 +4,6 @@
 
 var Messages = {
 
-<<<<<<< HEAD
-  // TODO: Define how you want to store your messages.
-  _data: [],
-
-  retrieveFrom: function(messages) {
-    this._data = [];
-    this._data = this._data.concat(messages);
-    // console.log(this._data);
-    return this._data;
-  },
-=======
->>>>>>> 85af38ff5bfffe2ef5c97b22ae49dca347dd5313
 
   _data: {},
 
