@@ -23,5 +23,5 @@ var Friends = {
       callback(true);
     }
   }
-  
+
 };
