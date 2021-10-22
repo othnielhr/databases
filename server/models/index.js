@@ -17,13 +17,13 @@ module.exports = {
     post: function (body, callback) {
       // use mysql INSERT INTO <table> (col1, col2, ...) VALUES (val1, val2, ...)
       // console.log('body', body);
-      var msg = body.message;
-      db.connection.query(`INSERT INTO messages (user_id, message, roomname) VALUES ((SELECT id FROM users WHERE name = '${body.username}'), @${body.message}, '${body.roomname}');`);
-      // if (err) {
-      //   console.log(err, null);
-      // } else {
-      callback(null, 'posted to messages');
-      // }
+      db.connection.query('INSERT INTO messages (user_id, message, roomname) VALUES ((SELECT id FROM users WHERE name = ?), ?, ?)', [body.username, body.message, body.roomname], function (err, results, fields) {
+        if (err) {
+          console.log(err, null);
+        } else {
+          callback(null, 'posted to messages');
+        }
+      });
     } // a function which can be used to insert a message into the database
   },
 
@@ -41,8 +41,13 @@ module.exports = {
     },
     post: function (body, callback) {
       console.log('post body', body);
-      db.connection.query(`INSERT INTO users (name) VALUES ('${body.username}');`);
-      callback(null, 'posted to users');
+      db.connection.query('INSERT INTO users (name) VALUES (?);', [body.username], function(err, results, fields) {
+        if (err) {
+          console.log(err, null);
+        } else {
+          callback(null, 'posted to users');
+        }
+      });
     }
   }
 };
