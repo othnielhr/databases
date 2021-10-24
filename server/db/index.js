@@ -16,17 +16,23 @@ db.authenticate()
 
 var User = db.define('user', {
   name: Sequelize.STRING
-});
+}, {timestamp: false, createdAt: false, updatedAt: false});
 
 var Messages = db.define('messages', {
   /* eslint-disable camelcase */
   user_id: Sequelize.INTEGER,
   message: Sequelize.STRING,
   roomname: Sequelize.STRING
-});
+}, {timestamp: false, createdAt: false, updatedAt: false});
 
+User.hasMany(Messages, {foreignKey: 'user_id'});
+Messages.belongsTo(User, {foreignKey: 'user_id'});
 
-module.exports = db;
+User.sync();
+Messages.sync();
+
+exports.User = User;
+exports.Messages = Messages;
 
 // var mysql = require('mysql');
 

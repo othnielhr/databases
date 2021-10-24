@@ -1,12 +1,14 @@
 var models = require('../models');
-var db = require('../db');
+var {Messages} = require('../db');
+var {User} = require('../db');
+/* eslint-disable camelcase */
 
 module.exports = {
   messages: {
     get: function (req, res) {
-      db.Messages.findAll( {include: [db.Users]} )
-        .complete(function(err, results) {
-          res.send(result);
+      Messages.findAll( {include: [User]} )
+        .then(function(err, results) {
+          res.json(results);
         });
       // console.log('controllers get');
       // models.messages.get((err, data) => {
@@ -19,15 +21,28 @@ module.exports = {
       // });
     }, // a function which handles a get request for all messages
     post: function (req, res) {
+      var [user, created] = User.findOrCreate({where: {name: req.body.username}})
+        .then(function(err, user) {
+          var content = {
+            message: req.body.message,
+            roomname: req.body.roomname,
+            user_id: 1
+          };
+          Messages.create(content)
+            .then(function(err, results) {
+              // res.sendStatus(201);
+            });
+        });
+      console.log('username', user.name);
       // console.log('controllers post');
-      console.log('req here', req);
-      models.messages.post(req.body, (err, data) => {
-        if (err) {
-          res.send(err);
-        } else {
-          res.send('jobs done');
-        }
-      });
+      // console.log('req here', req);
+      // models.messages.post(req.body, (err, data) => {
+      //   if (err) {
+      //     res.send(err);
+      //   } else {
+      //     res.send('jobs done');
+      //   }
+      // });
     } // a function which handles posting a message to the database
   },
 
